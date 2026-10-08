@@ -1,0 +1,449 @@
+.wrap { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* ── Toast ────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  padding: 11px 18px; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; z-index: 999;
+  box-shadow: 0 8px 30px rgba(0,0,0,.2);
+  animation: slideUp 200ms cubic-bezier(.4,0,.2,1);
+}
+.toast.ok  { background: var(--success); color: #fff; }
+.toast.err { background: var(--danger);  color: #fff; }
+[data-theme="dark"] .toast { box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+.empty { text-align: center; padding: 5rem 2rem; color: var(--text-muted); }
+.emptyIcon { font-size: 44px; margin-bottom: 14px; opacity: .5; }
+.empty p { font-size: 15px; color: var(--text-secondary); margin-bottom: 6px; }
+.emptyHint { font-size: 13px !important; color: var(--text-muted) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   VIEW 1 — Grid bulan
+═══════════════════════════════════════════════════════════ */
+
+/* Header baris judul + tombol import */
+.gridHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gridTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.importBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform 100ms, box-shadow var(--transition);
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  white-space: nowrap;
+}
+.importBtn:hover  { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+.importBtn:active { transform: translateY(0) scale(.98); }
+[data-theme="dark"] .importBtn:hover { box-shadow: 0 4px 16px rgba(0,0,0,.45); }
+
+/* Grid kartu bulan */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.monthCard {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color var(--transition), transform 120ms, box-shadow var(--transition);
+}
+[data-theme="dark"] .monthCard { border-color: var(--border); }
+.monthCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+[data-theme="dark"] .monthCard:hover { box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+
+.monthCardTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.monthName { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.monthYear { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+.monthCardStats { display: flex; gap: 16px; }
+.monthStat { display: flex; flex-direction: column; gap: 2px; }
+.monthStatNum { font-size: 14px; font-weight: 650; color: var(--text-secondary); }
+.monthStatLbl { font-size: 11px; color: var(--text-muted); }
+
+.monthCardTotal {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.monthCardArrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-text);
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VIEW 2 — Detail per bulan
+═══════════════════════════════════════════════════════════ */
+
+/* Top bar: tombol kembali + judul */
+.detailTopBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.backBtn:hover { background: var(--surface-3); color: var(--text); }
+[data-theme="dark"] .backBtn { background: var(--surface-2); border-color: var(--border); }
+[data-theme="dark"] .backBtn:hover { background: var(--surface-3); }
+
+.detailHeading { display: flex; flex-direction: column; gap: 2px; }
+.detailTitle   { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.detailSub     { font-size: 12px; color: var(--text-muted); }
+
+/* Tab selector jika >1 BKU dalam bulan */
+.entryTabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.entryTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.entryTab:hover { background: var(--surface-2); color: var(--text); }
+.entryTabActive {
+  background: var(--accent-dim) !important;
+  color: var(--accent-text) !important;
+  border-color: var(--accent-border) !important;
+  font-weight: 650;
+}
+[data-theme="dark"] .entryTab { background: var(--surface-2); border-color: var(--border); }
+[data-theme="dark"] .entryTab:hover { background: var(--surface-3); }
+
+.entryTabMeta {
+  font-size: 11px;
+  opacity: .7;
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+.entryTabActive .entryTabMeta {
+  background: rgba(255,255,255,.2);
+  opacity: 1;
+}
+
+/* Card info sekolah + tombol aksi */
+.detailCard {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+[data-theme="dark"] .detailCard { border-color: var(--border); }
+
+.detailCardInfo { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.detailCardTitle { font-size: 14px; font-weight: 650; color: var(--text); }
+.detailCardMeta  { font-size: 12px; color: var(--text-muted); }
+
+.detailCardActions { display: flex; gap: 7px; flex-shrink: 0; flex-wrap: wrap; }
+
+/* Buttons */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), transform 100ms;
+}
+.btnPrimary:hover  { background: var(--accent-hover); transform: translateY(-1px); }
+.btnPrimary:active { transform: translateY(0) scale(.98); }
+
+.btnDanger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.btnDanger:hover { background: var(--danger-dim, #fff0f0); color: var(--danger, #d00); border-color: var(--danger, #d00); }
+[data-theme="dark"] .btnDanger { background: var(--surface-2); border-color: var(--border); }
+[data-theme="dark"] .btnDanger:hover { background: rgba(220,38,38,.15); color: #f87171; border-color: #f87171; }
+
+.dlLabel {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: .85;
+  background: rgba(255,255,255,.18);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+/* ── Summary cards ────────────────────────────────────────── */
+.summaryRow { display: flex; gap: 10px; flex-wrap: wrap; }
+.summaryCard {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 11px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 110px;
+}
+[data-theme="dark"] .summaryCard { border-color: var(--border); }
+.summaryGreen {
+  border-color: var(--success-border) !important;
+  background: var(--success-dim) !important;
+}
+.summaryNum { font-size: 19px; font-weight: 650; color: var(--text); line-height: 1; letter-spacing: -0.01em; }
+.summaryGreen .summaryNum { color: var(--success-text); }
+[data-theme="dark"] .summaryGreen .summaryNum { color: var(--success); }
+.summaryLbl { font-size: 11px; color: var(--text-muted); }
+
+/* ── Pagination ───────────────────────────────────────────── */
+.paginationBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pageSizeWrap  { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.pageSizeLabel { font-size: 12px; color: var(--text-muted); padding: 0 2px; }
+.pageSizeBtn {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.pageSizeBtn:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-strong); }
+.pageSizeActive {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  font-weight: 600;
+}
+.pageInfo { font-size: 12px; color: var(--text-muted); }
+
+.pageNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.pageBtn {
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.pageBtn:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+.pageBtn:disabled { opacity: .35; cursor: not-allowed; }
+.pageDots { display: flex; gap: 3px; }
+.pageNum {
+  width: 30px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.pageNum:hover { background: var(--surface-2); color: var(--text); }
+.pageNumActive {
+  background: var(--accent-dim) !important;
+  color: var(--accent-text) !important;
+  border-color: var(--accent-border) !important;
+  font-weight: 700;
+}
+
+/* ── Tabel ────────────────────────────────────────────────── */
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+[data-theme="dark"] .tableWrap { border-color: var(--border); }
+
+.table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 860px; }
+.table thead tr { background: var(--surface-2); }
+[data-theme="dark"] .table thead tr { background: var(--surface-2); }
+.table th {
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+[data-theme="dark"] .table td { border-bottom-color: var(--border); }
+.table tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: var(--surface-2); }
+
+.ro  { color: var(--text-secondary); font-size: 13px; }
+.amt { font-weight: 600; text-align: right; color: var(--accent-text); white-space: nowrap; padding-right: 10px; }
+[data-theme="dark"] .amt { color: var(--accent); }
+
+.chip {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  border: 1px solid var(--accent-border);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.totalRow td {
+  background: var(--surface-2) !important;
+  border-top: 1px solid var(--border-strong) !important;
+}
+[data-theme="dark"] .totalRow td { background: var(--surface-2) !important; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .gridHeader { flex-wrap: wrap; gap: 8px; }
+  .gridTitle  { font-size: 16px; }
+
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .monthName { font-size: 14px; }
+
+  .detailTopBar { gap: 10px; }
+  .detailTitle  { font-size: 15px; }
+
+  .detailCard { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .detailCardActions { width: 100%; }
+  .btnPrimary, .btnDanger { flex: 1; justify-content: center; }
+
+  .summaryCard { min-width: calc(50% - 5px); flex: 1; }
+  .summaryNum  { font-size: 16px; }
+
+  .paginationBar { flex-direction: column; align-items: flex-start; }
+
+  .tableWrap { border-radius: var(--radius); }
+  .table { min-width: 700px; }
+  .table th { font-size: 10px; padding: 7px 8px; }
+  .table td { padding: 4px 7px; font-size: 12px; }
+
+  .toast { right: 12px; bottom: 16px; left: 12px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .summaryCard { min-width: 100%; }
+  .detailCardActions { flex-direction: column; }
+  .btnPrimary, .btnDanger { font-size: 12px; }
+}

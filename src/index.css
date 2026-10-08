@@ -1,0 +1,147 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── OLED Dark Design System ── */
+:root {
+  /* Light mode — clean neutral */
+  --bg:              #f4f4f2;
+  --bg-elevated:     #fafaf9;
+  --surface:         #ffffff;
+  --surface-2:       #f6f6f4;
+  --surface-3:       #eeeeeb;
+  --border:          #e4e4e0;
+  --border-subtle:   #ebebea;
+  --border-strong:   #d0d0ca;
+  --text:            #1c1c1a;
+  --text-secondary:  #6b6b65;
+  --text-muted:      #a8a8a2;
+  --text-disabled:   #c8c8c2;
+
+  /* Accent — muted blue */
+  --accent:          #3b7ef8;
+  --accent-dim:      #e8f0fe;
+  --accent-border:   #c0d4fb;
+  --accent-text:     #1a5fe0;
+  --accent-hover:    #2b6ee8;
+
+  /* Semantic */
+  --success:         #198c55;
+  --success-dim:     #ebf9f3;
+  --success-border:  #a8e8cc;
+  --success-text:    #156644;
+  --warning:         #a85e00;
+  --warning-dim:     #fff5e6;
+  --warning-border:  #ffd090;
+  --warning-text:    #8a4c00;
+  --danger:          #c42b2b;
+  --danger-dim:      #fff0f0;
+  --danger-border:   #f0b8b8;
+  --danger-text:     #a02020;
+
+  --radius:     8px;
+  --radius-lg:  12px;
+  --radius-sm:  5px;
+  --transition: 150ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ── OLED Dark Mode — true blacks, layered grays ── */
+[data-theme="dark"] {
+  /* True black base for OLED */
+  --bg:              #000000;
+  --bg-elevated:     #0a0a0a;
+  --surface:         #111111;
+  --surface-2:       #1a1a1a;
+  --surface-3:       #222222;
+
+  /* Subtle borders — barely visible, not harsh */
+  --border:          #2a2a2a;
+  --border-subtle:   #1e1e1e;
+  --border-strong:   #383838;
+
+  /* Text — NOT pure white, softer for OLED eye comfort */
+  --text:            #e8e8e6;
+  --text-secondary:  #8a8a86;
+  --text-muted:      #525250;
+  --text-disabled:   #3a3a38;
+
+  /* Accent — desaturated blue, not glaring */
+  --accent:          #5a8ff5;
+  --accent-dim:      #0e1a2e;
+  --accent-border:   #1c3055;
+  --accent-text:     #7aaaf8;
+  --accent-hover:    #6a9ff7;
+
+  /* Semantic — muted, OLED-safe */
+  --success:         #2ea86a;
+  --success-dim:     #081a10;
+  --success-border:  #0e3820;
+  --success-text:    #5ac88a;
+  --warning:         #d4900a;
+  --warning-dim:     #1a1000;
+  --warning-border:  #3d2800;
+  --warning-text:    #e8a830;
+  --danger:          #d85555;
+  --danger-dim:      #1a0808;
+  --danger-border:   #3d1414;
+  --danger-text:     #e87878;
+
+  --radius:     8px;
+  --radius-lg:  12px;
+  --radius-sm:  5px;
+  --transition: 150ms cubic-bezier(.4,0,.2,1);
+}
+
+html { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  font-family: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+
+#root { height: 100%; display: flex; flex-direction: column; }
+
+/* Scrollbar — dark mode refined */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), opacity var(--transition);
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface-2);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+input::placeholder { color: var(--text-disabled); }
+
+/* Selection */
+::selection { background: var(--accent-dim); color: var(--accent-text); }
+
+/* ─── Mobile base ─────────────────────────────── */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
+
+/* ─── Safe area (iPhone notch / home bar) ──────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-left:   env(safe-area-inset-left);
+    padding-right:  env(safe-area-inset-right);
+  }
+}

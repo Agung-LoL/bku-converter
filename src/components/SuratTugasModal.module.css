@@ -1,0 +1,174 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Section ──────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-muted);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+[data-theme="dark"] .sectionTitle { border-bottom-color: var(--border); }
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Field ────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.req {
+  color: var(--danger, #e53);
+  margin-left: 2px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 150ms, box-shadow 150ms;
+  box-sizing: border-box;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+[data-theme="dark"] .field input,
+[data-theme="dark"] .field textarea,
+[data-theme="dark"] .field select {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 58px;
+  line-height: 1.5;
+}
+
+.field input[type="date"] {
+  cursor: pointer;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+  font-style: italic;
+}
+
+.hint2 {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: -4px;
+  margin-bottom: 4px;
+}
+
+/* ── 2-column row ─────────────────────────────────────────── */
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Error ────────────────────────────────────────────────── */
+.errorBox {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--danger-dim, #fff0f0);
+  border: 1px solid var(--danger, #e53);
+  color: var(--danger, #c00);
+  font-size: 13px;
+  font-weight: 500;
+}
+[data-theme="dark"] .errorBox {
+  background: rgba(220,38,38,.12);
+  border-color: #f87171;
+  color: #fca5a5;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+[data-theme="dark"] .footer { border-top-color: var(--border); }
+
+.btnCancel {
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+.btnCancel:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+.btnCancel:disabled { opacity: .5; cursor: not-allowed; }
+[data-theme="dark"] .btnCancel { background: var(--surface-2); border-color: var(--border); }
+
+.btnGenerate {
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 150ms, transform 100ms, box-shadow 150ms;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+}
+.btnGenerate:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+}
+.btnGenerate:active:not(:disabled) { transform: translateY(0) scale(.98); }
+.btnGenerate:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .row2 { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; }
+  .btnCancel, .btnGenerate { width: 100%; justify-content: center; }
+}

@@ -1,0 +1,212 @@
+.wrap { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Form card */
+.formCard {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+}
+[data-theme="dark"] .formCard { border-color: var(--border); }
+.formTitle { font-size: 14px; font-weight: 650; color: var(--text); margin-bottom: 1.1rem; letter-spacing: -0.01em; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.fieldFull { grid-column: 1 / -1; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label, .fieldFull > label {
+  font-size: 12px; font-weight: 600;
+  color: var(--text-secondary); letter-spacing: .01em;
+}
+.field input, .field select,
+.fieldFull input, .fieldFull select {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+  transition: border-color var(--transition);
+}
+.field input:focus, .field select:focus,
+.fieldFull input:focus, .fieldFull select:focus {
+  outline: none; border-color: var(--accent);
+}
+.field input:disabled { opacity: .5; cursor: not-allowed; }
+[data-theme="dark"] .field input,
+[data-theme="dark"] .field select,
+[data-theme="dark"] .fieldFull input,
+[data-theme="dark"] .fieldFull select {
+  background: var(--surface-2); border-color: var(--border);
+}
+
+.sekolahRow { display: flex; gap: 8px; align-items: center; }
+.sekolahRow select { flex: 1; }
+.sekolahMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.sekolahMeta code {
+  font-family: monospace;
+  font-size: 11px;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-text);
+  border: 1px solid var(--border);
+}
+.shareLabel {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+.shareLabel input { height: auto !important; width: auto !important; cursor: pointer; }
+
+.formActions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Table card */
+.tableCard {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+}
+[data-theme="dark"] .tableCard { border-color: var(--border); }
+.tableTitle {
+  font-size: 14px; font-weight: 650; color: var(--text);
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+}
+.badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 20px; padding: 0 6px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 99px; font-size: 11px; font-weight: 700; color: var(--text-muted);
+}
+
+.tableWrap { overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+[data-theme="dark"] .tableWrap { border-color: var(--border); }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
+.table thead tr { background: var(--surface-2); }
+[data-theme="dark"] .table thead tr { background: var(--surface-2); }
+.table th {
+  padding: 8px 11px; text-align: left; font-size: 11px; font-weight: 600;
+  color: var(--text-muted); border-bottom: 1px solid var(--border);
+  text-transform: uppercase; letter-spacing: .05em; white-space: nowrap;
+}
+.table td { padding: 10px 11px; border-bottom: 1px solid var(--border-subtle); vertical-align: middle; color: var(--text-secondary); }
+[data-theme="dark"] .table td { border-bottom-color: var(--border); }
+.table tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: var(--surface-2); }
+
+.code { font-family: monospace; font-size: 12px; color: var(--text); }
+.dateCell { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+
+/* Status badges */
+.badgeShared, .badgePrivate, .badgeAdmin, .badgeUser {
+  display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 600; white-space: nowrap;
+}
+.badgeShared  { background: var(--accent-dim);   color: var(--accent-text);  border: 1px solid var(--accent-border); }
+.badgePrivate { background: var(--surface-2);     color: var(--text-muted);   border: 1px solid var(--border); }
+.badgeAdmin   { background: var(--warning-dim);   color: var(--warning-text); border: 1px solid var(--warning-border); }
+.badgeUser    { background: var(--success-dim);   color: var(--success-text); border: 1px solid var(--success-border); }
+[data-theme="dark"] .badgeShared  { color: var(--accent);  }
+[data-theme="dark"] .badgeAdmin   { color: var(--warning); }
+[data-theme="dark"] .badgeUser    { color: var(--success); }
+
+.rowActions { display: flex; gap: 6px; }
+
+/* Buttons */
+.btnPrimary {
+  padding: 8px 16px; border-radius: var(--radius); border: none;
+  background: var(--accent); color: #fff; font-size: 13px; font-weight: 650;
+  cursor: pointer; transition: opacity var(--transition);
+}
+.btnPrimary:hover { opacity: .88; }
+.btnGhost {
+  padding: 8px 14px; border-radius: var(--radius);
+  border: 1px solid var(--border-strong); background: var(--surface-2);
+  color: var(--text-secondary); font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background var(--transition);
+}
+.btnGhost:hover { background: var(--surface-3); }
+.btnDanger {
+  padding: 8px 14px; border-radius: var(--radius); border: none;
+  background: var(--danger); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: opacity var(--transition);
+}
+.btnDanger:hover { opacity: .88; }
+.btnEdit {
+  padding: 4px 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--surface-2);
+  color: var(--text-secondary); font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: background var(--transition);
+}
+.btnEdit:hover { background: var(--accent-dim); color: var(--accent-text); border-color: var(--accent-border); }
+.btnDel {
+  padding: 4px 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--danger-border); background: var(--danger-dim);
+  color: var(--danger-text); font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: background var(--transition);
+}
+[data-theme="dark"] .btnDel { color: var(--danger); }
+.btnDel:hover { background: var(--danger); color: #fff; border-color: transparent; }
+
+.empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 13px; }
+
+/* Confirm overlay */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; backdrop-filter: blur(4px);
+}
+.confirmBox {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  max-width: 360px; width: 90%;
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
+}
+[data-theme="dark"] .confirmBox { box-shadow: 0 24px 60px rgba(0,0,0,.7); }
+.confirmTitle { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.confirmDesc  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; }
+.confirmDesc strong { color: var(--text); }
+.confirmActions { display: flex; justify-content: flex-end; gap: 8px; }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  padding: 11px 18px; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; z-index: 999;
+  box-shadow: 0 8px 30px rgba(0,0,0,.2);
+}
+.toast.ok  { background: var(--success); color: #fff; }
+.toast.err { background: var(--danger);  color: #fff; }
+[data-theme="dark"] .toast { box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .fieldFull { grid-column: 1; }
+  .sekolahRow { flex-direction: column; }
+  .sekolahMeta { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .formActions { flex-direction: column; }
+  .btnPrimary, .btnGhost { justify-content: center; }
+  .tableWrap { font-size: 12px; }
+  .table th, .table td { padding: 7px 8px; }
+  .rowActions { flex-direction: column; gap: 4px; }
+  .confirmBox { margin: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .formCard, .tableCard { padding: 1rem; }
+}

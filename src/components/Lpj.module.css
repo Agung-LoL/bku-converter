@@ -1,0 +1,197 @@
+.wrap { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Empty state */
+.empty { text-align: center; padding: 5rem 2rem; color: var(--text-muted); }
+.emptyIcon { font-size: 44px; margin-bottom: 14px; opacity: .5; }
+.empty p { font-size: 15px; color: var(--text-secondary); margin-bottom: 6px; }
+.emptyHint { font-size: 13px !important; color: var(--text-muted) !important; }
+
+/* Grid bulan */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.monthCard {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--transition), transform 120ms, box-shadow var(--transition);
+}
+[data-theme="dark"] .monthCard { border-color: var(--border); }
+.monthCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+[data-theme="dark"] .monthCard:hover { box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+
+.monthCardTop { display: flex; align-items: baseline; gap: 8px; }
+.monthName { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.monthYear { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+.monthCardStats { display: flex; gap: 16px; }
+.monthStat { display: flex; flex-direction: column; gap: 2px; }
+.monthStatNum { font-size: 14px; font-weight: 650; color: var(--text-secondary); }
+.monthStatLbl { font-size: 11px; color: var(--text-muted); }
+
+.monthCardArrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-text);
+  margin-top: auto;
+}
+
+/* Detail page */
+.backBtn {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.backBtn:hover { background: var(--surface-3); color: var(--text); }
+
+.detailHeader { display: flex; flex-direction: column; gap: 3px; }
+.detailTitle { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.detailSub { font-size: 13px; color: var(--text-muted); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+}
+[data-theme="dark"] .card { border-color: var(--border); }
+.cardTitle { font-size: 14px; font-weight: 650; color: var(--text); margin-bottom: 4px; }
+.cardDesc { font-size: 12px; color: var(--text-muted); margin-bottom: 1rem; }
+
+.dropdownRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+.field select {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+  transition: border-color var(--transition);
+  /* Cegah overflow teks di dalam dropdown */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.field select:focus { outline: none; border-color: var(--accent); }
+.field select:disabled { opacity: .5; cursor: not-allowed; }
+[data-theme="dark"] .field select { background: var(--surface-2); border-color: var(--border); }
+
+.hintWarn { font-size: 11px; color: var(--warning-text); margin-top: 2px; }
+[data-theme="dark"] .hintWarn { color: var(--warning); }
+
+/* Card title row dengan tombol aksi */
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+/* Tombol Buat LPJ */
+.btnLpj {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), transform 100ms;
+}
+.btnLpj:hover  { background: var(--accent-hover); transform: translateY(-1px); }
+.btnLpj:active { transform: translateY(0) scale(.98); }
+
+/* Detail header transaksi */
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  margin-bottom: 1.1rem;
+}
+.detailItem { display: flex; flex-direction: column; gap: 3px; }
+.detailLbl  { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+.detailVal  { font-size: 13px; color: var(--text); }
+.detailAmt  { font-weight: 700; color: var(--accent-text); }
+[data-theme="dark"] .detailAmt { color: var(--accent); }
+
+/* Tabel item dalam No Bukti */
+.itemTableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+}
+[data-theme="dark"] .itemTableWrap { border-color: var(--border); }
+
+.itemTable { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 480px; }
+.itemTable thead tr { background: var(--surface-2); }
+[data-theme="dark"] .itemTable thead tr { background: var(--surface-2); }
+.itemTable th {
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.itemTable td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+[data-theme="dark"] .itemTable td { border-bottom-color: var(--border); }
+.itemTable tr:last-child td { border-bottom: none; }
+.itemTable tbody tr:hover td { background: var(--surface-2); }
+
+.tdMuted  { color: var(--text-disabled) !important; font-size: 12px; width: 28px; }
+.tdNum    { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tdCenter { text-align: center; }
+.tdAmt    { text-align: right; font-weight: 650; color: var(--accent-text) !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
+[data-theme="dark"] .tdAmt { color: var(--accent) !important; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .dropdownRow { grid-template-columns: 1fr; }
+  .detailGrid { grid-template-columns: 1fr; }
+  .cardTitleRow { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .btnLpj { width: 100%; justify-content: center; }
+}
